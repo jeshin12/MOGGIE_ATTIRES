@@ -10,7 +10,7 @@ router.get('/',sessionCheck,homePage);
 
 /* ********** loginpage ****** */
 
-router.get('/login',loginPage)
+router.get('/login',nocache,loginPage)
 
 router.post('/loginSubmit',loginSubmit)
 

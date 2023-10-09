@@ -2,10 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 const {adminLogin,adminloginsubmit,listProductGet,adminDashbord,listUserGet,listCategoryGet,listOrderGet,
-        listCouponGet,changeStatusGet} = require('../controller/adminController')
-// router.get('/', function(req, res, next) {
-//   res.render('admin/admin-login');
-// });
+        listCouponGet,changeStatusGet,addProductGet} = require('../controller/adminController')
+
   
 
 /* ********** loginpage ****** */
@@ -35,7 +33,17 @@ router.get('/changestatus',changeStatusGet);
 /* ********** userPage end ****** */
 
 
+
+
+/* ********** PRODUCT ****** */
+
 router.get('/list-product/:id',listProductGet);
+
+router.get('/add-product',addProductGet)
+
+
+
+/* ********** PRODUCT PAGE END ****** */
 
 
 router.get('/list-category',listCategoryGet)

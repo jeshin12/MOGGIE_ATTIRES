@@ -40,9 +40,9 @@ module.exports={
             let response = {}
             let user = await db.get().collection(collection.USER_COLLECTION).findOne({ Email: userData.Email })
             if (user) {
-                console.log(userData.Password,'userDataaaaaaaaa');
-                console.log(user.Password,'user.Passworddddd');
-                
+                if(user.blocked){
+                reject({error:"user is blocked"})
+            }else{
                     bcrypt.compare(userData.Password, user.Password).then((status) => {//user kodutha pssword data base lulla password check cheyyunnu 
                         console.log(status, 'st')
                         if (status) {
@@ -53,7 +53,7 @@ module.exports={
                         } else {
                             reject({ error:"invalid password" })
                         }
-                    })
+                    })}
                 
             } else {
                 console.log("no user");

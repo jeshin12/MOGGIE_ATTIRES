@@ -10,7 +10,7 @@ var usersRouter = require('./routes/users');
 var flash=require('connect-flash')
 const session = require('express-session');
 var db=require('./dbconfig/connection')
-var app = express();
+var app = express(); 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
   secret:"Key",
-  cookie:{maxAge:6000000}
+  cookie:{maxAge:600000}
 }));
 app.use(flash());
 
