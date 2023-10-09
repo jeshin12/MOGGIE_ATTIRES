@@ -1,6 +1,7 @@
 const { log } = require("console")
 const { response } = require('express');
 const {doSignup,dologin} = require('../helpers/userHelpers') 
+const{getAllProduct} = require('../helpers/productHelpers')
 
 module.exports={
 
@@ -77,8 +78,20 @@ module.exports={
         let user = req.session.users
         if (req.session.users) {
             
-                    res.render('users/homePage', { user, logged: true, userData: user,  })
- 
+                    // res.render('users/homePage', { user, logged: true, userData: user,  })
+                    getAllProduct().then((products) => {
+                        console.log(products,"productssssssss");
+                        products.forEach(async (element) => {
+                            if (element.stock <= 10 && element.stock != 0) {
+                                element.fewStock = true;
+                            } else if (element.stock == 0) {
+                                element.noStock = true;
+                            }
+                        });
+                        // console.log(category);
+                        // res.render('user/main', { user: true, category, products, users: true,wishCount, person, cartCount });
+                        res.render('users/homePage', { user, logged: true, userData: user,products  })
+                    });
            
         }
        

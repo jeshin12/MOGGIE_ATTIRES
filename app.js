@@ -11,7 +11,7 @@ var flash=require('connect-flash')
 const session = require('express-session');
 var db=require('./dbconfig/connection')
 var app = express(); 
-
+var fileUpload = require('express-fileupload');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -33,7 +33,7 @@ db.connect((err)=>{
   console.log("Connection Error"+err);
   else console.log("Database connected succesfully")
 })
-
+app.use(fileUpload())
 app.use('/', usersRouter);
 app.use('/admin', adminRouter);
 
