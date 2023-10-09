@@ -7,7 +7,7 @@ const{sessionCheck,nocache,verifyLogin}=require('../middleware/user-middleware')
 
 /* GET users listing. */
 router.get('/',sessionCheck,homePage);
-
+ 
 /* ********** loginpage ****** */
 
 router.get('/login',nocache,loginPage)
