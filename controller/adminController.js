@@ -2,7 +2,7 @@ const { log } = require("console")
 const { response } = require('express');
 const{doadminLoged} = require('../helpers/adminHelpers');
 const{getAllUsers,totUsers,changeStatus} = require('../helpers/userHelpers')
-const{addProduct,getallProductPage} = require('../helpers/productHelpers')
+const{addProduct,getallProductPage,getProductDetails} = require('../helpers/productHelpers')
 
 
 module.exports={
@@ -57,15 +57,7 @@ module.exports={
 /* **********  PRODUCT  ****** */
 
 
-    // listProductGet(req,res){
-    //     try{
-    //         res.render('admin/list-product',{admin:true})
-    //     } catch (error) {
-    //         console.log('somthing wrong in  adminDashboardGet');
-    //         res.redirect('/wrong')
-    //     }
-       
-    // },
+  
     listProductGet: (req, res) => {
         try {
             let pageNo = (Number(req.params.id) - 1) * 4;
@@ -124,6 +116,17 @@ module.exports={
             console.log(error,'somthing wrong in addProductPost ');
             res.redirect('/wrong')
         }
+    },
+
+
+    editProductGet: async (req, res) => {
+        // try {
+            let product = await getProductDetails(req.params.id)
+            // let category = await categoryHelpers.get_category_list()
+            res.render('admin/edit-product', { product, admin: true })
+        // } catch (error) {
+        //     res.redirect('/wrong') 
+        // }
     },
 
  /* **********  PRODUCT END ****** */

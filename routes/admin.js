@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const {adminLogin,adminloginsubmit,listProductGet,adminDashbord,listUserGet,listCategoryGet,listOrderGet,
-        listCouponGet,changeStatusGet,addProductGet,addProductPost} = require('../controller/adminController')
+        listCouponGet,changeStatusGet,addProductGet,addProductPost,editProductGet} = require('../controller/adminController')
 
   
 
@@ -42,6 +42,8 @@ router.get('/list-product/:id',listProductGet);
 router.get('/add-product',addProductGet)
 
 router.post('/add-product',addProductPost);
+
+router.get('/edit-product/:id',editProductGet);
 
 
 

@@ -37,5 +37,15 @@ module.exports={
                 resolve(products)
 
         })
-      }
+      },
+
+      getProductDetails: (productId) => {
+        console.log(productId);
+        return new Promise(async (resolve, reject) => {
+            let product = await db.get().collection(collection.PRODUCT_COLLECTION).findOne({ _id: objectId(productId) })
+
+            console.log(product);
+            resolve(product)
+        })
+    },
 }
